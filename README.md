@@ -28,7 +28,7 @@ gulp.task('compress', function() {
 ```
 
 ## Options
-- `exclude`
+- `ext`
     file extension
 
 - `exclude`
