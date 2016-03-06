@@ -1,0 +1,26 @@
+{
+  "name": "gulp-minify",
+  "version": "0.0.4",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hustxiaoc/gulp-minify.git"
+  },
+  "author": "taojie.hjp@taobao.com",
+  "dependencies": {
+    "gulp-util": "~2.2.14",
+    "minimatch": "^1.0.0",
+    "through2": "~0.4.0",
+    "uglify-js": "~2.4.6"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hustxiaoc/gulp-minify/issues"
+  },
+  "homepage": "https://github.com/hustxiaoc/gulp-minify",
+  "readmeFilename": "README.md"
+}
