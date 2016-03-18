@@ -34,6 +34,9 @@ gulp.task('compress', function() {
 - `exclude`
 
     Will not minify files in the dirs.
+    
+- `noSource`
+    Will not output the source code in the dest dirs.    
 
 - `ignoreFiles`
 
