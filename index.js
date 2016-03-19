@@ -97,7 +97,7 @@ module.exports = function(opt) {
       mangled = uglify.minify(String(file.contents), options);
       min_file.contents = new Buffer(mangled.code.replace(reSourceMapComment, ''));
     } catch (e) {
-      return return new PluginError('gulp-minify', e.toString());
+      return new PluginError('gulp-minify', e.toString());
     }
 
     if (file.sourceMap) {
