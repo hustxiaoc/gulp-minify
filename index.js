@@ -35,6 +35,7 @@ module.exports = function(opt) {
   var options = opt || {},
     ext = parseExt(options.ext);
 
+  options.output = {};  
   function minify(file, encoding, callback) {
 
     if (file.isNull()) {
