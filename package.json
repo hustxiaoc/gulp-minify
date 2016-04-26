@@ -15,7 +15,7 @@
     "gulp-util": "~2.2.14",
     "minimatch": "^1.0.0",
     "through2": "~0.4.0",
-    "uglify-js": "~2.4.6"
+    "uglify-js": "^2.6.2"
   },
   "license": "ISC",
   "bugs": {
