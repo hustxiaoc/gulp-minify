@@ -31,11 +31,25 @@ function parseExt(ext) {
   return _ext;
 }
 
+function formatError(error, file) {
+  var relativePath = '',
+    filePath = error.file === 'stdin' ? file.path : error.file,
+    message = '';
+
+  filePath = filePath ? filePath : file.path;
+  relativePath = path.relative(process.cwd(), filePath);
+
+  message += gutil.colors.underline(relativePath) + '\n';
+  message += error.message + ' (line: ' + error.line  + ', col: ' + error.col + ', pos: ' + error.pos;
+  error.message = gutil.colors.red(message);
+  return error;
+}
+
 module.exports = function(opt) {
   var options = opt || {},
     ext = parseExt(options.ext);
 
-  options.output =  options.output ||  {};  
+  options.output =  options.output ||  {};
   function minify(file, encoding, callback) {
 
     if (file.isNull()) {
@@ -44,7 +58,8 @@ module.exports = function(opt) {
     }
 
     if (file.isStream()) {
-      return new PluginError('gulp-minify', 'Streaming not supported:' + file.path);
+      this.emit('end');
+      return new callback(PluginError('gulp-minify', 'Streaming not supported:' + file.path));
     }
 
     var ignore = false;
@@ -98,7 +113,8 @@ module.exports = function(opt) {
       mangled = uglify.minify(String(file.contents), options);
       min_file.contents = new Buffer(mangled.code.replace(reSourceMapComment, ''));
     } catch (e) {
-      return new PluginError('gulp-minify', e.toString());
+      this.emit('end');
+      return callback(new PluginError('gulp-minify', formatError(e, file)));
     }
 
     if (file.sourceMap) {
