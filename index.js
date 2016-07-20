@@ -80,7 +80,7 @@ module.exports = function(opt) {
 
     if (ignore || path.extname(file.path) != '.js') {
       this.push(file);
-      return;
+      return callback();
     }
 
     var mangled,
