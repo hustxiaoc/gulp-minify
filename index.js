@@ -28,7 +28,7 @@ function parseExt(ext) {
       src: ext.src || ".js"
     }
   }
-  return _ext;
+  return _ext;min_file
 }
 
 function formatError(error, file) {
@@ -105,7 +105,7 @@ module.exports = function(opt) {
     options.fromString = options.hasOwnProperty("fromString") ? options.fromString : true;
 
     var min_file = new gutil.File({
-      path: file.path.replace(/\.js$/, ext.min),
+      path: Array.isArray(ext.min) ? file.path.replace(ext.min[0], ext.min[1]) : file.path.replace(/\.js$/, ext.min),
       base: file.base
     });
 
