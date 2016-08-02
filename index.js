@@ -28,7 +28,7 @@ function parseExt(ext) {
       src: ext.src || ".js"
     }
   }
-  return _ext;min_file
+  return _ext;
 }
 
 function formatError(error, file) {
