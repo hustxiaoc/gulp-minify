@@ -29,7 +29,16 @@ gulp.task('compress', function() {
 
 ## Options
 - `ext`
-    file extension
+    An object that specifies output source and minified file extensions.
+
+	- `source`
+
+		The suffix string of the filenames that output source files ends with.
+
+	- `min`
+
+		When string:	The suffix string of the filenames that output minified files ends with.
+		When Array:	The regex expressions to be replaced with input filenames. For example: `[/\.(.*)-source\.js$/, '$1.js']` 
 
 - `exclude`
 
