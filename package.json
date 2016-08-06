@@ -1,7 +1,7 @@
 {
   "name": "gulp-minify",
-  "version": "0.0.13",
-  "description": "",
+  "version": "0.0.14",
+  "description": "js minify plugin for gulp",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -12,9 +12,9 @@
   },
   "author": "taojie.hjp@taobao.com",
   "dependencies": {
-    "gulp-util": "~2.2.14",
+    "gulp-util": "^2.2.14",
     "minimatch": "^3.0.2",
-    "through2": "~0.4.0",
+    "through2": "^0.4.0",
     "uglify-js": "^2.6.2"
   },
   "license": "ISC",
