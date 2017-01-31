@@ -118,9 +118,9 @@ module.exports = function(opt) {
     }
 
     if (file.sourceMap) {
-      file.sourceMap = JSON.parse(mangled.map);
-      file.sourceMap.sourcesContent = originalSourceMap.sourcesContent;
-      file.sourceMap.sources = originalSourceMap.sources;
+      min_file.sourceMap = JSON.parse(mangled.map);
+      min_file.sourceMap.sourcesContent = originalSourceMap.sourcesContent;
+      min_file.sourceMap.sources = originalSourceMap.sources;
     }
 
     this.push(min_file);
