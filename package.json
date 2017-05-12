@@ -1,6 +1,6 @@
 {
   "name": "gulp-minify",
-  "version": "0.0.15",
+  "version": "0.1.0",
   "description": "js minify plugin for gulp",
   "main": "index.js",
   "scripts": {
@@ -15,7 +15,7 @@
     "gulp-util": "^2.2.14",
     "minimatch": "^3.0.2",
     "through2": "^0.4.0",
-    "uglify-js": "^2.6.2"
+    "uglify-es": "^3.0.3"
   },
   "license": "ISC",
   "bugs": {

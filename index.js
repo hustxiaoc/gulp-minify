@@ -1,6 +1,6 @@
 'use strict';
 var through = require('through2'),
-  uglify = require('uglify-js'),
+  uglify = require('uglify-es'),
   gutil = require('gulp-util'),
   minimatch = require('minimatch'),
   path = require('path'),
@@ -109,8 +109,14 @@ module.exports = function(opt) {
       base: file.base
     });
 
+    var uglifyOptions = {
+        mangle   : options.mangle   !== undefined ? options.mangle : true,
+        output   : options.output   !== undefined ? options.output : null,
+        compress : options.compress !== undefined ? options.compress : {}
+    };
+
     try {
-      mangled = uglify.minify(String(file.contents), options);
+      mangled = uglify.minify(String(file.contents), uglifyOptions);
       min_file.contents = new Buffer(mangled.code.replace(reSourceMapComment, ''));
     } catch (e) {
       this.emit('end');
