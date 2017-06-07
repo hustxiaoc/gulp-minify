@@ -2,6 +2,11 @@
 
 > Minify JavaScript with UglifyJS2.
 
+## Note
+The latest version of  `gulp-minify` is using [uglify-es](https://www.npmjs.com/package/uglify-es) to minify files, this may cause some incompatible issues with earlier language versions for now, see https://github.com/hustxiaoc/gulp-minify/issues/27.
+
+So `gulp-minify@es5` is for the earlier language versions if your project is not ready for the ECMAScript 6 yet.
+
 ## Installation
 
 Install package with NPM and add it to your development dependencies:
@@ -38,12 +43,12 @@ gulp.task('compress', function() {
 	- `min`
 
 		- When string:	The suffix string of the filenames that output minified files ends with.
-		- When Array:	The regex expressions to be replaced with input filenames. For example: `[/\.(.*)-source\.js$/, '$1.js']` 
+		- When Array:	The regex expressions to be replaced with input filenames. For example: `[/\.(.*)-source\.js$/, '$1.js']`
 
 - `exclude`
 
     Will not minify files in the dirs.
-    
+
 - `noSource`
     Will not output the source code in the dest dirs.    
 
