@@ -1,6 +1,6 @@
 # gulp-minify
 
-> Minify JavaScript with UglifyJS2.
+> Minify JavaScript with uglify-es.
 
 ## Note
 The latest version of  `gulp-minify` is using [uglify-es](https://www.npmjs.com/package/uglify-es) to minify files, this may cause some incompatible issues with earlier language versions for now, see https://github.com/hustxiaoc/gulp-minify/issues/27.
