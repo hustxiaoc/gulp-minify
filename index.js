@@ -112,7 +112,8 @@ module.exports = function(opt) {
     var uglifyOptions = {
         mangle   : options.mangle   !== undefined ? options.mangle : true,
         output   : options.output   !== undefined ? options.output : null,
-        compress : options.compress !== undefined ? options.compress : {}
+        compress : options.compress !== undefined ? options.compress : {},
+        sourceMap: !!file.sourceMap
     };
 
     try {
