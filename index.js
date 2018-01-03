@@ -3,16 +3,17 @@
 //2018-01-02 sc mod: gulp-util deprecation
 //2018-01-02 sc mod: require plugin-error to replace gutil.PluginError
 //2018-01-02 sc mod: require ansi-colors to replace gutil.colors
-//2018-01-02 sc mod: require plugin-error to replace gutil.PluginError
+//2018-01-02 sc mod: require vinyl to replace gutil.File
 
 var through = require('through2'),
   uglify = require('uglify-es'),
-  gutil = require('gulp-util'),
+  //gutil = require('gulp-util'),
   minimatch = require('minimatch'),
   path = require('path'),
   //PluginError = gutil.PluginError,
   PluginError = require('plugin-error'),
   colors = require('ansi-colors'),
+  vinyl = require('vinyl'),
   reSourceMapComment = /\n\/\/# sourceMappingURL=.+?$/,
   pathSeparatorRe = /[\/\\]/g;
 
@@ -112,7 +113,7 @@ module.exports = function(opt) {
     }
     options.fromString = options.hasOwnProperty("fromString") ? options.fromString : true;
 
-    var min_file = new gutil.File({
+    var min_file = new vinyl({
       path: Array.isArray(ext.min) ? file.path.replace(ext.min[0], ext.min[1]) : file.path.replace(/\.js$/, ext.min),
       base: file.base
     });
