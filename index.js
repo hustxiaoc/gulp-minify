@@ -4,7 +4,8 @@ var through = require('through2'),
   gutil = require('gulp-util'),
   minimatch = require('minimatch'),
   path = require('path'),
-  PluginError = gutil.PluginError,
+  //PluginError = gutil.PluginError,
+  PluginError = require('plugin-error'),
   reSourceMapComment = /\n\/\/# sourceMappingURL=.+?$/,
   pathSeparatorRe = /[\/\\]/g;
 
