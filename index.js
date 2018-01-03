@@ -13,7 +13,7 @@ var through = require('through2'),
   //PluginError = gutil.PluginError,
   PluginError = require('plugin-error'),
   colors = require('ansi-colors'),
-  vinyl = require('vinyl'),
+  File = require('vinyl'),
   reSourceMapComment = /\n\/\/# sourceMappingURL=.+?$/,
   pathSeparatorRe = /[\/\\]/g;
 
@@ -113,7 +113,7 @@ module.exports = function(opt) {
     }
     options.fromString = options.hasOwnProperty("fromString") ? options.fromString : true;
 
-    var min_file = new vinyl({
+    var min_file = new File({
       path: Array.isArray(ext.min) ? file.path.replace(ext.min[0], ext.min[1]) : file.path.replace(/\.js$/, ext.min),
       base: file.base
     });
