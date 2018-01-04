@@ -7,10 +7,8 @@
 
 var through = require('through2'),
   uglify = require('uglify-es'),
-  //gutil = require('gulp-util'),
   minimatch = require('minimatch'),
   path = require('path'),
-  //PluginError = gutil.PluginError,
   PluginError = require('plugin-error'),
   colors = require('ansi-colors'),
   File = require('vinyl'),
