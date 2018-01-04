@@ -13,7 +13,6 @@
   "author": "taojie.hjp@taobao.com",
   "dependencies": {
     "ansi-colors": "^1.0.1",
-    "gulp-util": "^2.2.14",
     "minimatch": "^3.0.2",
     "plugin-error": "^0.1.2",
     "through2": "^0.4.0",
