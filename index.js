@@ -18,7 +18,7 @@ function parseExt(ext) {
       min: "-min.js",
       src: ".js"
     }
-  } else if (typeof ext == "string") {
+  } else if (typeof ext === "string") {
     _ext = {
       min: ext,
       src: ".js"
