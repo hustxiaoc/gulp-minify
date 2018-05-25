@@ -6,7 +6,8 @@ var through = require('through2'),
   path = require('path'),
   PluginError = gutil.PluginError,
   reSourceMapComment = /\n\/\/# sourceMappingURL=.+?$/,
-  pathSeparatorRe = /[\/\\]/g;
+  pathSeparatorRe = /[\/\\]/g,
+  toVinyl = require('to-vinyl');
 
 
 function parseExt(ext) {
@@ -139,5 +140,5 @@ module.exports = function(opt) {
     callback();
   }
 
-  return /*through.obj(*/minify/*)*/;
+  return toVinyl(through.obj(minify));
 };
