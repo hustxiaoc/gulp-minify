@@ -16,7 +16,7 @@
     "minimatch": "^3.0.2",
     "through2": "^2.0.3",
     "uglify-es": "^3.0.3",
-    "to-vinyl": "^0.2.0"
+    "vinyl": "^2.1.0"
   },
   "license": "ISC",
   "bugs": {
