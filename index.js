@@ -140,5 +140,5 @@ module.exports = function(opt) {
     callback();
   }
 
-  return toVinyl(through.obj(minify));
+  return toVinyl(minify);
 };
