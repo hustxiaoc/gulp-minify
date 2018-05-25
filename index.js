@@ -139,5 +139,5 @@ module.exports = function(opt) {
     callback();
   }
 
-  return through.obj(minify);
+  return /*through.obj(*/minify/*)*/;
 };
