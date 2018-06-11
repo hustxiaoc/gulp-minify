@@ -1,13 +1,13 @@
 'use strict';
-var through = require('through2'),
-  uglify = require('uglify-es'),
-  minimatch = require('minimatch'),
-  path = require('path'),
-  Vinyl = require('vinyl'),
-  PluginError = require('plugin-error'),
-  colors = require('ansi-colors'),
-  reSourceMapComment = /\n\/\/# sourceMappingURL=.+?$/,
-  pathSeparatorRe = /[\/\\]/g;
+const through = require("through2");
+const uglify = require('uglify-es');
+const minimatch = require('minimatch');
+const path = require('path');
+const Vinyl = require('vinyl');
+const PluginError = require('plugin-error');
+const colors = require('ansi-colors');
+const reSourceMapComment = /\n\/\/# sourceMappingURL=.+?$/;
+const pathSeparatorRe = /[\/\\]/g;
 
 function parseExt(ext) {
 
@@ -35,8 +35,8 @@ function parseExt(ext) {
 }
 
 function formatError(error, file) {
-  let filePath = error.file === 'stdin' ? file.path : error.file,
-    message = '';
+  let filePath = error.file === 'stdin' ? file.path : error.file;
+  let message = '';
 
   filePath = filePath ? filePath : file.path;
   let relativePath = path.relative(process.cwd(), filePath);
@@ -70,7 +70,7 @@ module.exports = function(opt) {
       return new callback(PluginError('gulp-minify', 'Streaming not supported:' + file.path));
     }
 
-    var ignore = false;
+    let ignore = false;
 
     if (options.exclude) {
       ignore = options.exclude.some(function(item) {
@@ -91,8 +91,7 @@ module.exports = function(opt) {
       return callback();
     }
 
-    var mangled,
-      originalSourceMap;
+    let mangled, originalSourceMap;
 
     if (file.sourceMap) {
       options.outSourceMap = file.relative;
@@ -113,15 +112,15 @@ module.exports = function(opt) {
     options.fromString = options.hasOwnProperty("fromString") ? options.fromString : true;
 
     let min_file = new Vinyl({
-        base: file.base,
-        path: Array.isArray(ext.min) ? file.path.replace(ext.min[0], ext.min[1]) : file.path.replace(/\.js$/, ext.min),
+      base: file.base,
+      path: Array.isArray(ext.min) ? file.path.replace(ext.min[0], ext.min[1]) : file.path.replace(/\.js$/, ext.min),
     });
 
-    var uglifyOptions = {
-        mangle   : options.mangle   !== undefined ? options.mangle : true,
-        output   : options.output   !== undefined ? options.output : null,
-        compress : options.compress !== undefined ? options.compress : {},
-        sourceMap: !!file.sourceMap
+    const uglifyOptions = {
+      mangle   : options.mangle   !== undefined ? options.mangle : true,
+      output   : options.output   !== undefined ? options.output : null,
+      compress : options.compress !== undefined ? options.compress : {},
+      sourceMap: !!file.sourceMap
     };
 
     try {
@@ -140,15 +139,13 @@ module.exports = function(opt) {
 
     this.push(min_file);
 
-    if (!options.noSource) {
+    if (options.noSource !== true) {
       file.path = file.path.replace(/\.js$/, ext.src);
       this.push(file);
     }
 
     callback();
-
   }
 
   return through.obj(minify);
-
 };

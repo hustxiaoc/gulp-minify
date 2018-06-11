@@ -16,7 +16,7 @@ Install package with NPM and add it to your development dependencies:
 ## Usage
 
 ```javascript
-var minify = require('gulp-minify');
+const minify = require('gulp-minify');
 
 gulp.task('compress', function() {
   gulp.src('lib/*.js')
@@ -34,7 +34,7 @@ gulp.task('compress', function() {
 
 ## Options
 - `ext`
-    An object that specifies output source and minified file extensions.
+    An object that specifies output src and minified file extensions.
 
 	- `source`
 
