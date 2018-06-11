@@ -1,16 +1,16 @@
 {
   "name": "gulp-minify",
-  "version": "2.1.0",
+  "version": "3.0.0",
   "description": "js minify plugin for gulp",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/hustxiaoc/gulp-minify.git"
   },
-  "author": "taojie.hjp@taobao.com",
+  "author": "308512341@qq.com",
   "dependencies": {
     "ansi-colors": "^1.0.1",
     "minimatch": "^3.0.2",
@@ -24,5 +24,10 @@
     "url": "https://github.com/hustxiaoc/gulp-minify/issues"
   },
   "homepage": "https://github.com/hustxiaoc/gulp-minify",
-  "readmeFilename": "README.md"
+  "readmeFilename": "README.md",
+  "devDependencies": {
+    "gulp": "^4.0.0",
+    "mocha": "^5.2.0",
+    "rimraf": "^2.6.2"
+  }
 }
