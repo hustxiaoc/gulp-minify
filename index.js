@@ -3,22 +3,22 @@ var through = require('through2'),
   uglify = require('uglify-es'),
   minimatch = require('minimatch'),
   path = require('path'),
-  File = require('vinyl'),
+  Vinyl = require('vinyl'),
   PluginError = require('plugin-error'),
   colors = require('ansi-colors'),
   reSourceMapComment = /\n\/\/# sourceMappingURL=.+?$/,
   pathSeparatorRe = /[\/\\]/g;
 
-
 function parseExt(ext) {
-  var _ext = {};
+
+  let _ext = {};
 
   if (!ext) {
     _ext = {
       min: "-min.js",
       src: ".js"
     }
-  } else if (typeof ext == "string") {
+  } else if (typeof ext === "string") {
     _ext = {
       min: ext,
       src: ".js"
@@ -29,16 +29,17 @@ function parseExt(ext) {
       src: ext.src || ".js"
     }
   }
+
   return _ext;
+
 }
 
 function formatError(error, file) {
-  var relativePath = '',
-    filePath = error.file === 'stdin' ? file.path : error.file,
+  let filePath = error.file === 'stdin' ? file.path : error.file,
     message = '';
 
   filePath = filePath ? filePath : file.path;
-  relativePath = path.relative(process.cwd(), filePath);
+  let relativePath = path.relative(process.cwd(), filePath);
 
   message += colors.underline(relativePath) + '\n';
   message += error.message + ' (line: ' + error.line  + ', col: ' + error.col + ', pos: ' + error.pos;
@@ -47,10 +48,16 @@ function formatError(error, file) {
 }
 
 module.exports = function(opt) {
-  var options = opt || {},
-    ext = parseExt(options.ext);
 
+  //Set the options to the one provided or an empty object.
+  let options = opt || {};
+
+  //Parse the extensions form the options.
+  let ext = parseExt(options.ext);
+
+  //Set options output to itself, or, if null an empty object.
   options.output =  options.output ||  {};
+
   function minify(file, encoding, callback) {
 
     if (file.isNull()) {
@@ -105,9 +112,9 @@ module.exports = function(opt) {
     }
     options.fromString = options.hasOwnProperty("fromString") ? options.fromString : true;
 
-    var min_file = new File({
-      path: Array.isArray(ext.min) ? file.path.replace(ext.min[0], ext.min[1]) : file.path.replace(/\.js$/, ext.min),
-      base: file.base
+    let min_file = new Vinyl({
+        base: file.base,
+        path: Array.isArray(ext.min) ? file.path.replace(ext.min[0], ext.min[1]) : file.path.replace(/\.js$/, ext.min),
     });
 
     var uglifyOptions = {
@@ -137,8 +144,11 @@ module.exports = function(opt) {
       file.path = file.path.replace(/\.js$/, ext.src);
       this.push(file);
     }
+
     callback();
+
   }
 
   return through.obj(minify);
+
 };

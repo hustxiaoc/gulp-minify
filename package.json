@@ -14,8 +14,8 @@
   "dependencies": {
     "ansi-colors": "^1.0.1",
     "minimatch": "^3.0.2",
+    "through2": "^2.0.3",
     "plugin-error": "^0.1.2",
-    "through2": "^0.4.0",
     "uglify-es": "^3.0.3",
     "vinyl": "^2.1.0"
   },
