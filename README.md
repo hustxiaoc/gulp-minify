@@ -34,7 +34,7 @@ gulp.task('compress', function() {
 
 ## Options
 - `ext`
-    An object that specifies output source and minified file extensions.
+    An object that specifies output src and minified file extensions.
 
 	- `source`
 
