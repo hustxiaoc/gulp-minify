@@ -2,6 +2,10 @@
 
 > Minify JavaScript with uglify-es.
 
+[![Build Status](https://travis-ci.org/hustxiaoc/gulp-minify.svg?branch=master)](https://travis-ci.org/hustxiaoc/gulp-minify)
+[![NPM version](https://badge.fury.io/js/gulp-minify.svg)](http://badge.fury.io/js/gulp-minify)
+
+
 ## Note
 The latest version of  `gulp-minify` is using [uglify-es](https://www.npmjs.com/package/uglify-es) to minify files, this may cause some incompatible issues with earlier language versions for now, see https://github.com/hustxiaoc/gulp-minify/issues/27.
 
