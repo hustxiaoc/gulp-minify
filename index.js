@@ -1,10 +1,11 @@
 'use strict';
 var through = require('through2'),
   uglify = require('uglify-es'),
-  gutil = require('gulp-util'),
   minimatch = require('minimatch'),
   path = require('path'),
-  PluginError = gutil.PluginError,
+  File = require('vinyl'),
+  PluginError = require('plugin-error'),
+  colors = require('ansi-colors'),
   reSourceMapComment = /\n\/\/# sourceMappingURL=.+?$/,
   pathSeparatorRe = /[\/\\]/g;
 
@@ -39,9 +40,9 @@ function formatError(error, file) {
   filePath = filePath ? filePath : file.path;
   relativePath = path.relative(process.cwd(), filePath);
 
-  message += gutil.colors.underline(relativePath) + '\n';
+  message += colors.underline(relativePath) + '\n';
   message += error.message + ' (line: ' + error.line  + ', col: ' + error.col + ', pos: ' + error.pos;
-  error.message = gutil.colors.red(message);
+  error.message = colors.red(message);
   return error;
 }
 
@@ -104,7 +105,7 @@ module.exports = function(opt) {
     }
     options.fromString = options.hasOwnProperty("fromString") ? options.fromString : true;
 
-    var min_file = new gutil.File({
+    var min_file = new File({
       path: Array.isArray(ext.min) ? file.path.replace(ext.min[0], ext.min[1]) : file.path.replace(/\.js$/, ext.min),
       base: file.base
     });
