@@ -6,6 +6,9 @@
   "scripts": {
     "test": "mocha"
   },
+  "files":[
+    "index.js"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/hustxiaoc/gulp-minify.git"
