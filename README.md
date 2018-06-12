@@ -1,6 +1,6 @@
 # gulp-minify
 
-> Minify JavaScript with uglify-es.
+> Minify JavaScript with terser.
 
 [![Build Status](https://travis-ci.org/hustxiaoc/gulp-minify.svg?branch=master)](https://travis-ci.org/hustxiaoc/gulp-minify)
 [![NPM version](https://badge.fury.io/js/gulp-minify.svg)](http://badge.fury.io/js/gulp-minify)
@@ -40,7 +40,7 @@ gulp.task('compress', function() {
 - `ext`
     An object that specifies output src and minified file extensions.
 
-	- `source`
+	- `src`
 
 		The suffix string of the filenames that output source files ends with.
 
