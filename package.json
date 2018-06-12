@@ -6,7 +6,7 @@
   "scripts": {
     "test": "mocha"
   },
-  "files":[
+  "files": [
     "index.js"
   ],
   "repository": {
@@ -17,9 +17,9 @@
   "dependencies": {
     "ansi-colors": "^1.0.1",
     "minimatch": "^3.0.2",
-    "through2": "^2.0.3",
     "plugin-error": "^0.1.2",
-    "uglify-es": "^3.0.3",
+    "terser": "^3.7.6",
+    "through2": "^2.0.3",
     "vinyl": "^2.1.0"
   },
   "license": "ISC",
