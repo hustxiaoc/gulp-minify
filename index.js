@@ -1,6 +1,6 @@
 'use strict';
 const through = require("through2");
-const uglify = require('uglify-es');
+const uglify = require('terser');
 const minimatch = require('minimatch');
 const path = require('path');
 const Vinyl = require('vinyl');
