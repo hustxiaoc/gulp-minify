@@ -7,7 +7,7 @@
 
 
 ## Note
-The latest version of  `gulp-minify` is using [uglify-es](https://www.npmjs.com/package/uglify-es) to minify files, this may cause some incompatible issues with earlier language versions for now, see https://github.com/hustxiaoc/gulp-minify/issues/27.
+The latest version of  `gulp-minify` is using [terser](https://www.npmjs.com/package/terser) to minify files, this may cause some incompatible issues with earlier language versions for now, see https://github.com/hustxiaoc/gulp-minify/issues/27.
 
 So `gulp-minify@es5` is for the earlier language versions if your project is not ready for the ECMAScript 6 yet.
 
