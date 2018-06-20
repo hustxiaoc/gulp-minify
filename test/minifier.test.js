@@ -17,7 +17,7 @@ describe('test/minifier.test.js', () => {
   });
 
   after(() => {
-    rimraf.sync(build);
+    // rimraf.sync(build);
   });
 
   it('should minify ok', (done) => {
