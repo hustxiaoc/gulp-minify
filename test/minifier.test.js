@@ -9,7 +9,7 @@ const fixtures = path.join(__dirname, 'fixtures');
 const build = path.join(__dirname, 'build');
 
 function run(project, options) {
-  return gulp.src(`${fixtures}/${project}/**/*.js`).pipe(minify(options)).pipe(gulp.dest(`${build}/${project}`));
+  return gulp.src(`${fixtures}/${project}/**/*js`).pipe(minify(options)).pipe(gulp.dest(`${build}/${project}`));
 }
 describe('test/minifier.test.js', () => {
   before(() => {
@@ -17,7 +17,7 @@ describe('test/minifier.test.js', () => {
   });
 
   after(() => {
-    rimraf.sync(build);
+    // rimraf.sync(build);
   });
 
   it('should minify ok', (done) => {
@@ -83,6 +83,18 @@ describe('test/minifier.test.js', () => {
       assert(fs.existsSync(path.join(buildPath, 'index-min.js')));
       assert(fs.existsSync(path.join(buildPath, 'ignore.js')));
       assert(fs.existsSync(path.join(buildPath, 'ignore-min.js')) === false);
+      done();
+    });
+  });
+
+  it('should minify .mjs files alongside .js files', (done) => {
+    const project = 'demo6';
+    run(project).on('end', () => {
+      const buildPath = `${build}/${project}`;
+      assert(fs.existsSync(path.join(buildPath, 'index.js')));
+      assert(fs.existsSync(path.join(buildPath, 'index-min.js')));
+      assert(fs.existsSync(path.join(buildPath, 'index.mjs')));
+      assert(fs.existsSync(path.join(buildPath, 'index-min.mjs')));
       done();
     });
   });
