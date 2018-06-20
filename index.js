@@ -8,25 +8,26 @@ const PluginError = require('plugin-error');
 const colors = require('ansi-colors');
 const reSourceMapComment = /\n\/\/# sourceMappingURL=.+?$/;
 const pathSeparatorRe = /[\/\\]/g;
+const jsExtensions = /\.m?js$/;
 
-function parseExt(ext) {
+function parseExt(ext, byDefault = ".js") {
 
   let _ext = {};
 
   if (!ext) {
     _ext = {
-      min: "-min.js",
-      src: ".js"
+      min: "-min" + byDefault,
+      src: byDefault
     }
   } else if (typeof ext === "string") {
     _ext = {
       min: ext,
-      src: ".js"
+      src: byDefault
     }
   } else {
     _ext = {
-      min: ext.min || "-min.js",
-      src: ext.src || ".js"
+      min: ext.min || "-min" + byDefault,
+      src: ext.src || byDefault
     }
   }
 
@@ -51,9 +52,6 @@ module.exports = function(opt) {
 
   //Set the options to the one provided or an empty object.
   let options = opt || {};
-
-  //Parse the extensions form the options.
-  let ext = parseExt(options.ext);
 
   //Set options output to itself, or, if null an empty object.
   options.output =  options.output ||  {};
@@ -86,7 +84,7 @@ module.exports = function(opt) {
       });
     }
 
-    if (ignore || path.extname(file.path) != '.js') {
+    if (ignore || !path.extname(file.path).match(jsExtensions)) {
       this.push(file);
       return callback();
     }
@@ -111,9 +109,12 @@ module.exports = function(opt) {
     }
     options.fromString = options.hasOwnProperty("fromString") ? options.fromString : true;
 
+    //Parse the extensions form the options.
+    let ext = parseExt(options.ext, path.extname(file.path));
+
     let min_file = new Vinyl({
       base: file.base,
-      path: Array.isArray(ext.min) ? file.path.replace(ext.min[0], ext.min[1]) : file.path.replace(/\.js$/, ext.min),
+      path: Array.isArray(ext.min) ? file.path.replace(ext.min[0], ext.min[1]) : file.path.replace(jsExtensions, ext.min),
     });
 
     const uglifyOptions = {
@@ -140,7 +141,7 @@ module.exports = function(opt) {
     this.push(min_file);
 
     if (options.noSource !== true) {
-      file.path = file.path.replace(/\.js$/, ext.src);
+      file.path = file.path.replace(jsExtensions, ext.src);
       this.push(file);
     }
 
