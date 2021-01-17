@@ -125,7 +125,7 @@ module.exports = function(opt) {
     };
 
     try {
-      mangled = uglify.minify(String(file.contents), uglifyOptions);
+      mangled = await uglify.minify(String(file.contents), uglifyOptions);
       min_file.contents = new Buffer(mangled.code.replace(reSourceMapComment, ''));
     } catch (e) {
       this.emit('end');
