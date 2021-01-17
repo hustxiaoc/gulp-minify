@@ -18,7 +18,7 @@
     "ansi-colors": "^1.0.1",
     "minimatch": "^3.0.2",
     "plugin-error": "^0.1.2",
-    "terser": "^3.7.6",
+    "terser": "^5.5.1",
     "through2": "^2.0.3",
     "vinyl": "^2.1.0"
   },
