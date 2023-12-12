@@ -124,28 +124,29 @@ module.exports = function(opt) {
       sourceMap: !!file.sourceMap
     };
 
-    try {
-      mangled = uglify.minify(String(file.contents), uglifyOptions);
-      min_file.contents = new Buffer(mangled.code.replace(reSourceMapComment, ''));
-    } catch (e) {
-      this.emit('end');
-      return callback(new PluginError('gulp-minify', formatError(e, file)));
-    }
+    (uglify.minify(String(file.contents), uglifyOptions))
+      .then((mangled) => {
+        min_file.contents = new Buffer(mangled.code.replace(reSourceMapComment, ''));
 
-    if (file.sourceMap) {
-      min_file.sourceMap = JSON.parse(mangled.map);
-      min_file.sourceMap.sourcesContent = originalSourceMap.sourcesContent;
-      min_file.sourceMap.sources = originalSourceMap.sources;
-    }
+        if (file.sourceMap) {
+          min_file.sourceMap = JSON.parse(mangled.map);
+          min_file.sourceMap.sourcesContent = originalSourceMap.sourcesContent;
+          min_file.sourceMap.sources = originalSourceMap.sources;
+        }
 
-    this.push(min_file);
+        this.push(min_file);
 
-    if (options.noSource !== true) {
-      file.path = file.path.replace(jsExtensions, ext.src);
-      this.push(file);
-    }
+        if (options.noSource !== true) {
+          file.path = file.path.replace(jsExtensions, ext.src);
+          this.push(file);
+        }
 
-    callback();
+        callback();
+      })
+      .catch(e => {
+        this.emit('end');
+        callback(new PluginError('gulp-minify', formatError(e, file)));
+      })
   }
 
   return through.obj(minify);
